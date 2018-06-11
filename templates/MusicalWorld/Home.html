@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+MusicWorld
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<div class="row">
+    <div class="col-md-5">
+        <img src="{% static 'Music/image/listening.jpg' %}" class="img-thumbnail" alt="Artist"/>
+    </div>
+
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+    <div class="col-md-7">
+        <h1>LISTENING TO YOUR FAVOURITE MUSIC ON CLOUD HAS BECOME SO EASY NOW !!!</h1>
+    </div>
+</div>
+
+<h2 style="text-align:center"> Now create your own playlist from thousands of the songs available in all the albums which suits your mood </h2>
+
+{% endblock %}

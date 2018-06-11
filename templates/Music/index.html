@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Albums
+{% endblock %}
+
+{% block body %}
+<h2>Albums to chose from </h2>
+      <ul class="">
+      {% for album in object_list %}
+          <li class="list-group-item" styles="background-color: #333333">
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="">
+                      <img class="img-thumbnail" width="150" src="{{ album.album_logo.url }}" alt="{{ album.artist }}">
+                  </div>
+              </div>
+
+              <div class="col-md-8">
+                <ul class="" style="list-style-type:none">
+                  <li class=""><h3>Album : {{ album.album_title }}</h3></li>
+                  <li class=""><h3>Genre : {{ album.genre }}</h3></li>
+                  <li class=""><h3>Artist : {{ album.artist }}</h3></li>
+                  <li class=""><a href="{% url 'Music:detail' album.id %}"><button type="button" class="btn btn-info">View Details</button></a></li>
+                </ul>
+              </div>
+          </div>
+          {% endfor %}
+      </ul>
+{% endblock %}

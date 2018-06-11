@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Details
+{% endblock %}
+
+{% block body %}
+<h3>Hi {{ user.username }} , Here are your Playlists </h3>
+    <ul class="">
+    {% for p in playlist %}
+    <li class="list-group-item" styles="background-color: #333333">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Playlist : {{ p.name }}</h4>
+            </div>
+
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+    <div class="col-md-8">
+        <h4>List of Songs:</h4>
+        <ul class="" style="list-style-type:none">
+            {% for song in p.songs.all %}
+            <li class=""><h5>{{ song.song_title }}</h5></li>
+             {% endfor %}
+        </ul>
+    </div>
+        </div></li>
+    {% endfor %}
+    </ul>
+{% endblock %}
