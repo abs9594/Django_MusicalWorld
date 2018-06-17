@@ -13,15 +13,18 @@ class IndexView(LoginRequiredMixin,generic.ListView):
     def get_queryset(self):
         return Album.objects.all()
 
-class DetailView(LoginRequiredMixin,generic.DetailView):
+
+class DetailView(LoginRequiredMixin, generic.DetailView):
     model = Album
     template_name = 'Music/detail.html'
 
+
 @login_required
 def PlaylistCreate(request):
+
     form = PlaylistForm
     if request.method == 'POST':
-        playlist = Playlist(user = request.user)
+        playlist = Playlist(user=request.user)
         form = PlaylistForm(instance=playlist,data=request.POST)
         if form.is_valid():
             form.save()
@@ -30,6 +33,7 @@ def PlaylistCreate(request):
 
 
 class SongView(LoginRequiredMixin,generic.ListView):
+
     template_name = 'Music/indexSongs.html'
 
     def get_queryset(self):
@@ -37,9 +41,8 @@ class SongView(LoginRequiredMixin,generic.ListView):
 
 @login_required
 def UserPlaylist(request):
-    template_name = 'Music/UserPlaylist.html'
-    if request.user.is_authenticated:
-        username = request.user.username
-    playlist = Playlist.objects.filter(user__username= username)
 
+    template_name = 'Music/UserPlaylist.html'
+    username = request.user.username
+    playlist = Playlist.objects.filter(user__username=username)
     return render(request,template_name,{'playlist':playlist})
