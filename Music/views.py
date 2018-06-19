@@ -3,8 +3,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render ,redirect
 from django.views import generic
 from django.views.generic.edit import CreateView
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from .models import Album , Song ,Playlist
 from .forms import PlaylistForm
+from .serializers import AlbumSerializer,SongSerializer
 
 
 class IndexView(LoginRequiredMixin,generic.ListView):
@@ -46,3 +50,17 @@ def UserPlaylist(request):
     username = request.user.username
     playlist = Playlist.objects.filter(user__username=username)
     return render(request,template_name,{'playlist':playlist})
+
+class AlbumRest(APIView):
+
+    def get(self,request):
+        albums = Album.objects.all()
+        serializer = AlbumSerializer(albums,many=True)
+        return Response(serializer.data)
+
+class SongRest(APIView):
+
+    def get(self,request):
+        songs = Song.objects.all()
+        serializer = SongSerializer(songs,many=True)
+        return Response(serializer.data)

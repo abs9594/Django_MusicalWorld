@@ -28,8 +28,11 @@ urlpatterns = [
     re_path(r'^registration/$',views.UserFormView.as_view(),name='registration'),
     re_path(r'^login/$',LoginView.as_view(template_name='MusicalWorld/login_form.html'),name='login'),
     re_path(r'^logout/$',LogoutView.as_view(),name='logout'),
+    re_path(r'^accounts/', include('allauth.urls')),
 
 ]
+
+
 
 if settings.DEBUG :
     urlpatterns +=static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)

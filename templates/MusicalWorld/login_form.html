@@ -2,6 +2,10 @@
 {% block title %}MusicWorld|Login{% endblock %}
 
 {% block body %}
+{% load socialaccount %}
+<div class="container-fluid">
+    <h3>You are not logged-in ! Please Login </h3>
+</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -24,5 +28,15 @@
     </div>
 </div>
 
-
+<div class="container-fluid">
+    <h4>Don't have account ?
+        <a href="{% url 'registration' %}">
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;Sign-Up
+        </a>
+        Or Login with
+        <a href="{% provider_login_url 'google' %}">
+            <i class="fa fa-google-plus-square" aria-hidden="true"></i>&nbsp;Google
+        </a>
+    </h4>
+</div>
 {% endblock %}
