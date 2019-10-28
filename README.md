@@ -1,2 +1,2 @@
 # Django_MusicalWorld
-Website made on Django 
+Online Musical portal Website made on Django
